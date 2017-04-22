@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
-import spacy
-nlp = spacy.load('en')
-
 TO_CAPITALIZE = {
     # nouns
     'NN', # common noun, singular or mass
@@ -56,7 +52,6 @@ def capitalize_token(arg, idx):
     )
 
 def titlecase_tokens(arg):
-    arg = nlp(arg.lower())
     ret = []
 
     for idx, tok in enumerate(arg):
@@ -66,9 +61,13 @@ def titlecase_tokens(arg):
     return ret
 
 if __name__ == '__main__':
+    import sys
+    import spacy
+    nlp = spacy.load('en')
+
     args = sys.argv[1:]
     if not args:
         args = sys.stdin
     for arg in args:
-        output = titlecase_tokens(arg)
+        output = titlecase_tokens(nlp(arg.lower()))
         print(''.join(output))
