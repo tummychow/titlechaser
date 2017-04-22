@@ -62,6 +62,12 @@ def titlecase_tokens(arg):
             if tok.dep_ in {'mark', 'complm'}:
                 capitalize = True
 
+        if idx < len(arg) - 1 and arg[idx+1].tag_ == 'HYPH':
+            # this token is followed by a hyphen, so if it was the first
+            # in its hyphenated sequence, it should be capitalized
+            if idx != 0 and arg[idx-1].tag_ != 'HYPH':
+                capitalize = True
+
         ret.append(tok.orth_.capitalize() if capitalize else tok.orth_)
         ret.append(tok.whitespace_)
 

@@ -37,14 +37,14 @@ titlechaser is based on the headline-style capitalization rules outlined in the 
 4. lowercase "to" in an infinitive verb
 5. lowercase "as" in all forms
 
-For hyphenated words, titlechaser follows section 8.159. Its handling of these is not perfect right now, but spaCy does a pretty good job tokenizing them out of the box.
+For hyphenated words, titlechaser follows section 8.159.
 
 1. capitalize the first element
 2. capitalize all subsequent elements unless they are articles, prepositions or coordinating conjunctions
 3. if the first element is a prefix that could not form its own word, do not capitalize the second element unless it is a proper noun or proper adjective
 4. capitalize all segments of a spelled-out number
 
-Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago section 8.158.
+Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago section 8.158 and 8.159.
 
 - Mnemonics That Work Are Better Than Rules That Do Not
 - Singing While You Work
@@ -58,6 +58,18 @@ Of course, the rules can be a lot more nuanced than this (although the current e
 - Sitting on the Floor in an Empty Room
 - Ten Hectares per Capita, but Landownership and Per Capita Income
 - Progress in In Vitro Fertilization
+- Under-the-Counter Transactions and Out-of-Fashion Initiatives
+- Bed-and-Breakfast Options in Upstate New York
+- Record-Breaking Borrowings from Medium-Sized Libraries
+- Cross-Stitching for Beginners
+- A History of the Chicago Lying-In Hospital
+- The E-flat Concerto
+- Self-Sustaining Reactions
+- Anti-intellectual Pursuits
+- Does E-mail Alter Thinking Patterns?
+- A Two-Thirds Majority of Non-English-Speaking Representatives
+- Ninety-Fifth Avenue Blues
+- Atari's Twenty-First-Century Adherents
 
 And here is how titlechaser thinks they should be capitalized (I have bolded the words where titlechaser disagreed with Chicago).
 
@@ -73,6 +85,18 @@ And here is how titlechaser thinks they should be capitalized (I have bolded the
 - Sitting on the Floor in an Empty Room
 - Ten Hectares per Capita, but Landownership and **per** Capita Income
 - Progress in **in** **vitro** Fertilization
+- Under-the-Counter Transactions and Out-of-Fashion Initiatives
+- Bed-and-Breakfast Options in Upstate New York
+- Record-Breaking Borrowings from Medium-Sized Libraries
+- Cross-Stitching for Beginners
+- A History of the Chicago Lying-**in** Hospital
+- The E-**Flat** Concerto
+- Self-Sustaining Reactions
+- Anti-**Intellectual** Pursuits
+- Does E-**Mail** Alter Thinking Patterns?
+- A Two-Thirds Majority of Non-English-Speaking Representatives
+- Ninety-Fifth Avenue Blues
+- Atari's Twenty-First-Century Adherents
 
 As you can see, titlechaser got pretty close, but it tripped up on some notable corner cases. If you're surprised by what titlechaser does, I recommend lowercasing your sentence and plugging it into [displaCy](https://demos.explosion.ai/displacy/) to see how spaCy tags it.
 
