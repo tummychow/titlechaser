@@ -35,40 +35,32 @@ TO_CAPITALIZE = {
     'WRB', # wh-adverb
 }
 
+def capitalize_token(arg, idx):
+    tok = arg[idx]
+    return (
+        # token is first or last
+        (idx == 0 or idx == len(arg)-1) or
+        # token is a type that should always be capitalized
+        (tok.tag_ in TO_CAPITALIZE) or
+        # token is a subordinating conjunction
+        # the IN tag represents a preposition (if followed by a noun or
+        # prepositional phrase), or a subordinating conjunction (if
+        # followed by a clause)
+        # if this token is related to its syntactic parent as either
+        # a MARK (for an adverbial clause modifier) or a COMPLM
+        # (complementary clause), then we treat it as a subordinating
+        # conjunction and capitalize it
+        (tok.tag_ == 'IN' and tok.dep_ in {'mark', 'complm'}) or
+        # token is the first in a hyphenated sequence
+        (idx > 0 and idx < len(arg)-1 and arg[idx+1].tag_ == 'HYPH' and arg[idx-1].tag_ != 'HYPH')
+    )
+
 def titlecase_tokens(arg):
     arg = nlp(arg.lower())
     ret = []
 
     for idx, tok in enumerate(arg):
-        capitalize = False
-
-        if idx == 0 or idx == len(arg) - 1:
-            capitalize = True
-
-        if tok.tag_ in TO_CAPITALIZE:
-            capitalize = True
-        elif tok.tag_ == 'IN':
-            # IN can mean preposition or subordinating conjunction,
-            # depending on what comes after
-            # if IN is followed by a clause, it is a subordinating
-            # conjunction, and should be capitalized
-            # if IN is followed by a noun/prepositional phrase, it is a
-            # preposition, and should be lowercased
-            # to identify if this IN is followed by a clause, we check
-            # how it is related to its syntactic parent
-            # if the relationship is a MARK (adverbial clause) or COMPLM
-            # (complementary clause), we treat it as a subordinating
-            # conjunction
-            if tok.dep_ in {'mark', 'complm'}:
-                capitalize = True
-
-        if idx < len(arg) - 1 and arg[idx+1].tag_ == 'HYPH':
-            # this token is followed by a hyphen, so if it was the first
-            # in its hyphenated sequence, it should be capitalized
-            if idx != 0 and arg[idx-1].tag_ != 'HYPH':
-                capitalize = True
-
-        ret.append(tok.orth_.capitalize() if capitalize else tok.orth_)
+        ret.append(tok.orth_.capitalize() if capitalize_token(arg, idx) else tok.orth_)
         ret.append(tok.whitespace_)
 
     return ret
