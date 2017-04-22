@@ -44,7 +44,7 @@ For hyphenated words, titlechaser follows section 8.159:
 3. if the first element is a prefix that could not form its own word, do not capitalize the second element unless it is a proper noun or proper adjective
 4. capitalize all segments of a spelled-out number
 
-Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago section 8.158 and 8.159:
+Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago sections 8.158 and 8.159:
 
 - Mnemonics That Work Are Better Than Rules That Do Not
 - Singing While You Work
