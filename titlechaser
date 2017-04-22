@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+
+import sys
+import spacy
+nlp = spacy.load('en')
+
+TO_CAPITALIZE = {
+    # nouns
+    'NN', # common noun, singular or mass
+    'NNS', # common noun, plural
+    'NNP', # proper noun, singular
+    'NNPS', # proper noun, plural
+    # pronouns
+    'PRP', # pronoun, personal
+    'PRP$', # pronoun, possessive
+    'WP', # wh-pronoun, personal
+    'WP$', # wh-pronoun, possessive
+    # adjectives
+    'JJ', # adjective
+    'JJR', # adjective, comparative
+    'JJS', # adjective, superlative
+    # verbs
+    'MD', # verb, modal
+    'VB', # verb, base form
+    'VBD', # verb, past tense
+    'VBG', # verb, gerund or present participle
+    'VBN', # verb, past participle
+    'VBP', # verb, present tense, other than third person singular
+    'VBZ', # verb, present tense, third person singular
+    # adverbs
+    'RB', # adverb
+    'RBR', # adverb, comparative
+    'RBS', # adverb, superlative
+    'RP', # adverb, particle
+    'WRB', # wh-adverb
+}
+
+def titlecase_tokens(arg):
+    arg = nlp(arg.lower())
+    ret = []
+
+    for idx, tok in enumerate(arg):
+        capitalize = False
+
+        if idx == 0 or idx == len(arg) - 1:
+            capitalize = True
+
+        if tok.tag_ in TO_CAPITALIZE:
+            capitalize = True
+        elif tok.tag_ == 'IN':
+            # IN can mean preposition or subordinating conjunction,
+            # depending on what comes after
+            # if IN is followed by a clause, it is a subordinating
+            # conjunction, and should be capitalized
+            # if IN is followed by a noun/prepositional phrase, it is a
+            # preposition, and should be lowercased
+            # to identify if this IN is followed by a clause, we check
+            # how it is related to its syntactic parent
+            # if the relationship is a MARK (adverbial clause) or COMPLM
+            # (complementary clause), we treat it as a subordinating
+            # conjunction
+            if tok.dep_ in {'mark', 'complm'}:
+                capitalize = True
+
+        ret.append(tok.orth_.capitalize() if capitalize else tok.orth_)
+        ret.append(tok.whitespace_)
+
+    return ret
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    if not args:
+        args = sys.stdin
+    for arg in args:
+        output = titlecase_tokens(arg)
+        print(''.join(output))
