@@ -29,7 +29,7 @@ A Hitchhiker's Guide to the Galaxy
 
 ## Headline-Style Capitalization Rules
 
-titlechaser is based on the headline-style capitalization rules outlined in the Chicago Manual of Style (16th edition), section 8.157.
+titlechaser is based on the headline-style capitalization rules outlined in the Chicago Manual of Style (16th edition), section 8.157:
 
 1. capitalize the first and last word
 2. capitalize nouns, pronouns, adjectives, verbs, adverbs, and subordinating conjunctions
@@ -37,14 +37,14 @@ titlechaser is based on the headline-style capitalization rules outlined in the 
 4. lowercase "to" in an infinitive verb
 5. lowercase "as" in all forms
 
-For hyphenated words, titlechaser follows section 8.159.
+For hyphenated words, titlechaser follows section 8.159:
 
 1. capitalize the first element
 2. capitalize all subsequent elements unless they are articles, prepositions or coordinating conjunctions
 3. if the first element is a prefix that could not form its own word, do not capitalize the second element unless it is a proper noun or proper adjective
 4. capitalize all segments of a spelled-out number
 
-Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago section 8.158 and 8.159.
+Of course, the rules can be a lot more nuanced than this (although the current edition of Chicago admits fewer exceptions than older editions did). titlechaser is not a replacement for a professional editor, and it doesn't always do exactly what Chicago says. These are the examples given by Chicago section 8.158 and 8.159:
 
 - Mnemonics That Work Are Better Than Rules That Do Not
 - Singing While You Work
@@ -71,7 +71,7 @@ Of course, the rules can be a lot more nuanced than this (although the current e
 - Ninety-Fifth Avenue Blues
 - Atari's Twenty-First-Century Adherents
 
-And here is how titlechaser thinks they should be capitalized (I have bolded the words where titlechaser disagreed with Chicago).
+And here is how titlechaser thinks they should be capitalized (I have bolded the words where titlechaser disagreed with Chicago):
 
 - Mnemonics **that** Work Are Better **than** Rules **that** Do Not
 - Singing While You Work
